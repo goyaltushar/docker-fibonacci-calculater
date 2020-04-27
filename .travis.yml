@@ -1,0 +1,19 @@
+sudo: required
+services:
+    - docker
+before_install:
+    - docker build -t tushargoyal/test -f ./client/Dockerfile.dev ./client
+script:
+    - docker run -e CI=true tushargoyal/test npm test -- --coverage
+after-success:
+    - docker build -t tushargoyal/app-client ./client
+    - docker build -t tushargoyal/app-nginx ./ nginx
+    - docker build -t tushargoyal/app-server ./server
+    - docker build -t tushargoyal/app-worker ./worker
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - docker push tushargoyal/app-client
+    - docker push tushargoyal/app-nginx
+    - docker push tushargoyal/app-server
+    - docker push tushargoyal/app-worker
+
+
