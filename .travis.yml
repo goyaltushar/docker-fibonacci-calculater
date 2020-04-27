@@ -10,7 +10,7 @@ after-success:
     - docker build -t tushargoyal/app-nginx ./nginx
     - docker build -t tushargoyal/app-server ./server
     - docker build -t tushargoyal/app-worker ./worker
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin docker.io
     - docker push tushargoyal/app-client
     - docker push tushargoyal/app-nginx
     - docker push tushargoyal/app-server
