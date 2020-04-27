@@ -6,14 +6,14 @@ before_install:
 script:
     - docker run -e CI=true tushargoyal/test npm test -- --coverage
 after-success:
-    - docker build -t tushargoyal/app-client ./client
-    - docker build -t tushargoyal/app-nginx ./nginx
-    - docker build -t tushargoyal/app-server ./server
-    - docker build -t tushargoyal/app-worker ./worker
+    - docker build -t 1842420/app-client ./client
+    - docker build -t 1842420/app-nginx ./nginx
+    - docker build -t 1842420/app-server ./server
+    - docker build -t 1842420/app-worker ./worker
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-    - docker push tushargoyal/app-client
-    - docker push tushargoyal/app-nginx
-    - docker push tushargoyal/app-server
-    - docker push tushargoyal/app-worker
+    - docker push 1842420/app-client
+    - docker push 1842420/app-nginx
+    - docker push 1842420/app-server
+    - docker push 1842420/app-worker
 
 
